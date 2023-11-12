@@ -32,10 +32,53 @@ Normalizing the data
 Splitting the data into test and train
 
 ## PROGRAM:
-/Write your code here/
+```
+import pandas as pd
+
+df = pd.read_csv("Churn_Modelling.csv")
+
+df.head() df.info()
+
+x = df.iloc[:,:-1].values y= df.iloc[:,1].values x y
+
+df.describe()
+
+from sklearn.preprocessing import LabelEncoder le = LabelEncoder()
+
+df1 = df.copy()
+
+df1["Geography"] = le.fit_transform(df1["Geography"]) df1["Gender"] = le.fit_transform(df1["Gender"])
+
+from sklearn.preprocessing import StandardScaler from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
+
+df1[["CreditScore","Geography","Age","Tenure","Balance","NumOfProducts","EstimatedSalary"]] = pd.DataFrame(scaler.fit_transform(df1[["CreditScore","Geography","Age","Tenure","Balance","NumOfProducts","EstimatedSalary"]]))
+
+df1.describe()
+
+X = df1[["CreditScore","Geography","Gender","Age","Tenure","Balance","NumOfProducts","HasCrCard","IsActiveMember","EstimatedSalary"]].values print(X)
+
+y = df1.iloc[:,-1].values print(y)
+
+from sklearn.model_selection import train_test_split X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+print(X_train)
+
+print("Size of X_train: ",len(X_train))
+
+print(X_test) print("Size of X_test: ",len(X_test))
+```
 
 ## OUTPUT:
-/ Show the result/
+![image](https://github.com/MaithreyanDinakaran/Ex.No.1---Data-Preprocessing/assets/119104032/5fc94029-6283-48c6-9e3f-02a1a5d28125)
+![image](https://github.com/MaithreyanDinakaran/Ex.No.1---Data-Preprocessing/assets/119104032/a24d12d7-ed97-488a-bcb6-e26a65425697)
+![image](https://github.com/MaithreyanDinakaran/Ex.No.1---Data-Preprocessing/assets/119104032/34b2e47e-9b5e-4e3f-97db-6d18c6beee1c)
+![image](https://github.com/MaithreyanDinakaran/Ex.No.1---Data-Preprocessing/assets/119104032/40d529f1-a4ca-4496-a433-d42638cb9ca7)
+![image](https://github.com/MaithreyanDinakaran/Ex.No.1---Data-Preprocessing/assets/119104032/ae3e5390-35ef-461b-8aad-08ad42b78385)
+![image](https://github.com/MaithreyanDinakaran/Ex.No.1---Data-Preprocessing/assets/119104032/c13a99fc-9f5d-4b5f-9548-c418b545b2c8)
+![image](https://github.com/MaithreyanDinakaran/Ex.No.1---Data-Preprocessing/assets/119104032/72ce0dcf-6cdb-4ca9-af3a-c569effff70f)
+
 
 ## RESULT
-/Type your result here/
+Data preprocessing is performed in the given dataset.
